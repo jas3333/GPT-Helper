@@ -1,9 +1,9 @@
-import Chatbot from './components/ChatBot';
+import Home from './pages/Home';
 
 function App() {
     return (
-        <div className='App'>
-            <Chatbot />
+        <div className='container'>
+            <Home />
         </div>
     );
 }
