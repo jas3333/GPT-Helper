@@ -1,4 +1,4 @@
-const PromptController = ({ temperature, setTemperature, tokens, setTokens }) => {
+const PromptController = ({ temperature, setTemperature, tokens, setTokens, setSelectedModel }) => {
     return (
         <div className='settings'>
             <form className='container-col'>
@@ -18,9 +18,15 @@ const PromptController = ({ temperature, setTemperature, tokens, setTokens }) =>
                     name='tokens'
                     value={tokens}
                     min='5'
-                    max='1024'
+                    max='2000'
                     onChange={(event) => setTokens(event.target.value)}
                 />
+                <select className='mg-top-md pad-sm' onChange={(event) => setSelectedModel(event.target.value)}>
+                    <option value='text-davinci-003'>Davinci</option>
+                    <option value='text-curie-001'>Curie</option>
+                    <option value='text-babbage-001'>Babbage</option>
+                    <option value='text-ada-001'>Ada</option>
+                </select>
             </form>
         </div>
     );

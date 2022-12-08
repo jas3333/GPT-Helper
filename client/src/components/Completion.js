@@ -3,7 +3,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 const Completion = ({ botResponse, promptQuestion }) => {
     return (
-        <div className='container-col bg-mid pad-lg mg-top-md mg-bot-md radius-md '>
+        <div className='container-col bg-mid pad-lg mg-top-md mg-bot-md radius-md shadow '>
             <h3>You: {promptQuestion}</h3>
             <div className='underline-full mg-top-sm mg-bot-sm'></div>
             <h3>GPT:</h3>
