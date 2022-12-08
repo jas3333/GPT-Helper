@@ -6,7 +6,7 @@ const Completion = ({ botResponse, promptQuestion, totalTokens }) => {
         <div className='container-col bg-mid pad-lg mg-top-md mg-bot-md radius-md shadow '>
             <div className='container space'>
                 <h3>You: {promptQuestion}</h3>
-                <h4>{totalTokens}</h4>
+                <h4 title='Total token cost'>{totalTokens}</h4>
             </div>
             <div className='underline-full mg-top-sm mg-bot-sm'></div>
             <h3>GPT:</h3>
