@@ -9,8 +9,6 @@ const Completion = ({ botResponse, promptQuestion, totalTokens }) => {
                 <h4 title='Total token cost'>{totalTokens}</h4>
             </div>
             <div className='underline-full mg-top-sm mg-bot-sm'></div>
-            <h3>GPT:</h3>
-            <div className='underline-min'></div>
 
             <ReactMarkdown
                 children={botResponse}

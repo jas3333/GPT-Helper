@@ -1,4 +1,15 @@
-const PromptController = ({ temperature, setTemperature, tokens, setTokens, setSelectedModel, setConversation }) => {
+const PromptController = ({
+    temperature,
+    setTemperature,
+    tokens,
+    setTokens,
+    setSelectedModel,
+    setConversation,
+    nucleus,
+    setNucleus,
+    stopTokens,
+    setStopTokens,
+}) => {
     return (
         <div className='settings'>
             <form className='container-col'>
@@ -13,15 +24,36 @@ const PromptController = ({ temperature, setTemperature, tokens, setTokens, setS
                     onChange={(event) => setTemperature(event.target.value)}
                     title='This will adjust the randomness of the conversation. Setting to 0 will be straightforward, setting to 1 will be more random.'
                 />
+                <label>{`top_p: ${nucleus}`}</label>
+                <input
+                    type='range'
+                    name='top_p'
+                    value={nucleus}
+                    min='0'
+                    max='1'
+                    step='.1'
+                    onChange={(event) => setNucleus(event.target.value)}
+                    title='The top_p parameter is used to control the diversity of the generated text. The higher the value the more diverse the generated text will be.'
+                />
                 <label>{`Tokens: ${tokens}`}</label>
                 <input
                     type='range'
                     name='tokens'
                     value={tokens}
                     min='5'
-                    max='2000'
+                    max='2048'
                     onChange={(event) => setTokens(event.target.value)}
-                    title='Sets the max token amount. Once tokes reach the set amount, the Chatbot will fail to respond. Either reset the conversation, or increase the tokens.'
+                    title='Sets max_token parameter in the api call. GPT will not generate more than the set tokens. This setting does not stop requests at the set tokens.'
+                />
+                <label>{`Stop tokens: ${stopTokens}`}</label>
+                <input
+                    type='range'
+                    name='tokens'
+                    value={stopTokens}
+                    min='5'
+                    max='4000'
+                    onChange={(event) => setStopTokens(event.target.value)}
+                    title='This setting will stop the request if the token size has reached the size of the set tokens. As the prompt grows in size, so do the token requirements, this setting will put a cap.'
                 />
                 <select
                     className='mg-top-md pad-sm'

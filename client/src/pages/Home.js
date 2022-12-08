@@ -13,7 +13,7 @@ const Home = () => {
     const [conversation, setConversation] = useState('');
 
     // Crappy workaround to get markdown because I can't figure out how to separate regular text and code
-    const promptOptions = 'Respond in markdown.';
+    const promptOptions = 'Respond in markdown.\n';
 
     // Values for Completion
     const [chatResponse, setChatResponse] = useState([]);
@@ -21,6 +21,8 @@ const Home = () => {
     // Values for PromptController
     const [temperature, setTemperature] = useState(0);
     const [tokens, setTokens] = useState(512);
+    const [stopTokens, setStopTokens] = useState(1000);
+    const [nucleus, setNucleus] = useState(0);
     const [selectedModel, setSelectedModel] = useState('text-davinci-003');
 
     const onSubmit = async (event) => {
@@ -35,12 +37,16 @@ const Home = () => {
         };
         const promptData = {
             model: selectedModel,
-            prompt: `${conversation}\nQ:${question} ${promptOptions}`,
+            prompt: `${promptOptions}${conversation}\nQ:${question}`,
+            top_p: Number(nucleus),
             max_tokens: Number(tokens),
             temperature: Number(temperature),
             n: 1,
             stream: false,
             logprobs: null,
+            stop: {
+                max_tokens: stopTokens,
+            },
         };
 
         try {
@@ -52,6 +58,7 @@ const Home = () => {
             };
 
             console.log(response);
+            console.log(chatResponse);
 
             // Allows the bot to remember previous questions
             setConversation(`${conversation}\n${question}\n${newChat.botResponse}`);
@@ -74,7 +81,18 @@ const Home = () => {
     const forPrompt = { question, setQuestion, onSubmit, loading };
 
     // Props for PromptController
-    const forPrompController = { temperature, setTemperature, tokens, setTokens, setSelectedModel, setConversation };
+    const forPrompController = {
+        temperature,
+        setTemperature,
+        tokens,
+        setTokens,
+        setSelectedModel,
+        setConversation,
+        nucleus,
+        setNucleus,
+        stopTokens,
+        setStopTokens,
+    };
 
     return (
         <div className='container-col auto mg-top-lg radius-md size-lg '>
