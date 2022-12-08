@@ -7,7 +7,7 @@ This app isn't fully featured yet. I still have a lot of work to do, but it does
 
 ## Issues:
 
-1. I still need to work out a way for it to remember previous questions so that a conversation can continue.
+1. ~~I still need to work out a way for it to remember previous questions so that a conversation can continue.~~
 2. Because I'm still pretty new to programming, I don't have a way to separate the responses. For example when you ask for code it sends back text. My workaround was to concatenate to the prompt `Respond in markdown` then use react-markdown to display the response.
 
 ## To Do:

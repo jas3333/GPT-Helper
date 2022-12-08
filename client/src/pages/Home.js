@@ -35,24 +35,26 @@ const Home = () => {
         };
         const promptData = {
             model: selectedModel,
-            prompt: `${conversation}\nQ: ${question} ${promptOptions}`,
+            prompt: `${conversation}\nQ:${question} ${promptOptions}`,
             max_tokens: Number(tokens),
             temperature: Number(temperature),
             n: 1,
             stream: false,
             logprobs: null,
         };
-        console.log(promptData.prompt);
 
         try {
             const response = await axios.post('https://api.openai.com/v1/completions', promptData, options);
+            console.log(response);
 
             const newChat = {
                 botResponse: response.data.choices[0].text,
                 promptQuestion: question,
             };
+            console.log(newChat.botResponse);
 
-            setConversation(`${conversation}\nQ:${question}\nA: ${newChat.botResponse}`);
+            setConversation(`${conversation}\nQ:${question}\nA:${newChat.botResponse}`);
+            console.log(conversation);
 
             setQuestion('');
 
@@ -69,7 +71,7 @@ const Home = () => {
     }, [chatResponse]);
 
     const forPrompt = { question, setQuestion, onSubmit, loading };
-    const forPrompController = { temperature, setTemperature, tokens, setTokens, setSelectedModel };
+    const forPrompController = { temperature, setTemperature, tokens, setTokens, setSelectedModel, setConversation };
 
     return (
         <div className='container-col auto mg-top-lg radius-md size-lg '>
