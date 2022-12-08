@@ -25,3 +25,5 @@ git clone https://github.com/jas3333/GPT-Helper
 cd GPT-Helper/client
 npm install && start
 ```
+
+![](images/GPTChat.png)
