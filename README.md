@@ -23,7 +23,17 @@ git clone the repo:
 ```
 git clone https://github.com/jas3333/GPT-Helper
 cd GPT-Helper/client
-npm install && start
+npm install
 ```
+
+### To run:
+
+You will need to setup a .env file in the client directory.
+
+```
+REACT_APP_OPENAI_KEY=yourkey
+```
+
+Then just `npm start` inside the client directory.
 
 ![](images/GPTChat.png)
