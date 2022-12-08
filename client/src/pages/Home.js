@@ -13,7 +13,7 @@ const Home = () => {
     const [conversation, setConversation] = useState('');
 
     // Crappy workaround to get markdown because I can't figure out how to separate regular text and code
-    const promptOptions = 'Respond in markdown.';
+    const promptOptions = 'Respond in markdown. Dont use A:';
 
     // Values for Completion
     const [chatResponse, setChatResponse] = useState([]);
@@ -45,19 +45,18 @@ const Home = () => {
 
         try {
             const response = await axios.post('https://api.openai.com/v1/completions', promptData, options);
-            console.log(response);
-
             const newChat = {
                 botResponse: response.data.choices[0].text,
                 promptQuestion: question,
+                totalTokens: response.data.usage.total_tokens,
             };
-            console.log(newChat.botResponse);
 
+            console.log(response);
+
+            // Allows the bot to remember previous questions
             setConversation(`${conversation}\nQ:${question}\nA:${newChat.botResponse}`);
             console.log(conversation);
-
             setQuestion('');
-
             setLoading(false);
             setChatResponse([...chatResponse, newChat]);
         } catch (error) {
@@ -66,11 +65,15 @@ const Home = () => {
         }
     };
 
+    // Scrolls to bottom of the page as new content is created
     useEffect(() => {
         window.scrollTo(0, document.body.scrollHeight);
     }, [chatResponse]);
 
+    // Props for Prompt component
     const forPrompt = { question, setQuestion, onSubmit, loading };
+
+    // Props for PromptController
     const forPrompController = { temperature, setTemperature, tokens, setTokens, setSelectedModel, setConversation };
 
     return (

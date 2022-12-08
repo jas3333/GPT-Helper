@@ -1,10 +1,13 @@
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
-const Completion = ({ botResponse, promptQuestion }) => {
+const Completion = ({ botResponse, promptQuestion, totalTokens }) => {
     return (
         <div className='container-col bg-mid pad-lg mg-top-md mg-bot-md radius-md shadow '>
-            <h3>You: {promptQuestion}</h3>
+            <div className='container space'>
+                <h3>You: {promptQuestion}</h3>
+                <h4>{totalTokens}</h4>
+            </div>
             <div className='underline-full mg-top-sm mg-bot-sm'></div>
             <h3>GPT:</h3>
             <div className='underline-min'></div>
