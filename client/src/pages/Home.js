@@ -10,6 +10,7 @@ const Home = () => {
 
     // Values for Prompt
     const [question, setQuestion] = useState('');
+    const [conversation, setConversation] = useState('');
 
     // Crappy workaround to get markdown because I can't figure out how to separate regular text and code
     const promptOptions = 'Respond in markdown.';
@@ -24,7 +25,6 @@ const Home = () => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        console.log(Number(tokens));
 
         setLoading(true);
         const options = {
@@ -35,14 +35,14 @@ const Home = () => {
         };
         const promptData = {
             model: selectedModel,
-            prompt: `${question} ${promptOptions}`,
+            prompt: `${conversation}\nQ: ${question} ${promptOptions}`,
             max_tokens: Number(tokens),
             temperature: Number(temperature),
             n: 1,
             stream: false,
             logprobs: null,
         };
-        console.log(promptData);
+        console.log(promptData.prompt);
 
         try {
             const response = await axios.post('https://api.openai.com/v1/completions', promptData, options);
@@ -52,11 +52,12 @@ const Home = () => {
                 promptQuestion: question,
             };
 
+            setConversation(`${conversation}\nQ:${question}\nA: ${newChat.botResponse}`);
+
             setQuestion('');
 
             setLoading(false);
             setChatResponse([...chatResponse, newChat]);
-            console.log(response);
         } catch (error) {
             setLoading(false);
             console.log(error);
