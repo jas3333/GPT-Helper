@@ -14,7 +14,8 @@ This app isn't fully featured yet. I still have a lot of work to do, but it does
 
 1. Add more options to the PromptController
 2. Add a toggle switch so the PromptController is a drop down menu instead of it always showing.
-3. Make it mobile friendly. Not a top priority though since I just use this in a browser on my desktop.
+3. Add a backend and connect it to MongoDB to save conversations.
+4. Make it mobile friendly. Not a top priority though since I just use this in a browser on my desktop.
 
 ### To install:
 
