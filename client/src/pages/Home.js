@@ -13,7 +13,7 @@ const Home = () => {
     const [conversation, setConversation] = useState('');
 
     // Crappy workaround to get markdown because I can't figure out how to separate regular text and code
-    const promptOptions = 'Respond in markdown. Dont use A:';
+    const promptOptions = 'Respond in markdown.';
 
     // Values for Completion
     const [chatResponse, setChatResponse] = useState([]);
@@ -54,7 +54,7 @@ const Home = () => {
             console.log(response);
 
             // Allows the bot to remember previous questions
-            setConversation(`${conversation}\nQ:${question}\nA:${newChat.botResponse}`);
+            setConversation(`${conversation}\n${question}\n${newChat.botResponse}`);
             console.log(conversation);
             setQuestion('');
             setLoading(false);
