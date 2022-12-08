@@ -45,16 +45,6 @@ const PromptController = ({
                     onChange={(event) => setTokens(event.target.value)}
                     title='Sets max_token parameter in the api call. GPT will not generate more than the set tokens. This setting does not stop requests at the set tokens.'
                 />
-                <label>{`Stop tokens: ${stopTokens}`}</label>
-                <input
-                    type='range'
-                    name='tokens'
-                    value={stopTokens}
-                    min='5'
-                    max='4000'
-                    onChange={(event) => setStopTokens(event.target.value)}
-                    title='This setting will stop the request if the token size has reached the size of the set tokens. As the prompt grows in size, so do the token requirements, this setting will put a cap.'
-                />
                 <select
                     className='mg-top-md pad-sm'
                     onChange={(event) => setSelectedModel(event.target.value)}

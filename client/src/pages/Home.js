@@ -21,7 +21,6 @@ const Home = () => {
     // Values for PromptController
     const [temperature, setTemperature] = useState(0);
     const [tokens, setTokens] = useState(512);
-    const [stopTokens, setStopTokens] = useState(1000);
     const [nucleus, setNucleus] = useState(0);
     const [selectedModel, setSelectedModel] = useState('text-davinci-003');
 
@@ -44,9 +43,6 @@ const Home = () => {
             n: 1,
             stream: false,
             logprobs: null,
-            stop: {
-                max_tokens: stopTokens,
-            },
         };
 
         try {
@@ -90,8 +86,6 @@ const Home = () => {
         setConversation,
         nucleus,
         setNucleus,
-        stopTokens,
-        setStopTokens,
     };
 
     return (
