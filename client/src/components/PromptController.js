@@ -1,3 +1,4 @@
+import Personas from './Personas';
 const PromptController = ({
     temperature,
     setTemperature,
@@ -13,6 +14,7 @@ const PromptController = ({
     threadSize,
     setChatResponse,
 }) => {
+    const personasArray = Object.entries(personas);
     return (
         <div className='settings '>
             <form className='container-col '>
@@ -81,90 +83,18 @@ const PromptController = ({
             <h3 className='text-center mg-top-md'>Personalities</h3>
             <div className='underline-full mg-top-sm'></div>
             <div className='mg-top-sm'>
-                <input
-                    type='radio'
-                    name='happy'
-                    value=''
-                    className='radio'
-                    checked={persona === ''}
-                    onChange={(event) => setPersona(event.target.value)}
-                />
-                <label htmlFor='happy' className='mg-left-sm'>
-                    No Persona
-                </label>
-                <br />
-                <input
-                    type='radio'
-                    name='happy'
-                    value={personas.happy}
-                    className='radio'
-                    checked={persona === personas.happy}
-                    onChange={(event) => setPersona(event.target.value)}
-                />
-                <label htmlFor='happy' className='mg-left-sm'>
-                    Happy
-                </label>
-                <br />
-                <input
-                    type='radio'
-                    name='happy'
-                    value={personas.surfer}
-                    className='radio mg-top-sm'
-                    checked={persona === personas.surfer}
-                    onChange={(event) => setPersona(event.target.value)}
-                />
-                <label htmlFor='happy' className='mg-left-sm'>
-                    Surfer Dude
-                </label>
-                <br />
-                <input
-                    type='radio'
-                    name='happy'
-                    value={personas.snob}
-                    className='mg-top-sm'
-                    checked={persona === personas.snob}
-                    onChange={(event) => setPersona(event.target.value)}
-                />
-                <label htmlFor='happy' className='mg-left-sm'>
-                    Snob
-                </label>
-                <br />
-                <input
-                    type='radio'
-                    name='happy'
-                    value={personas.grouch}
-                    className='radio mg-top-sm'
-                    checked={persona === personas.grouch}
-                    onChange={(event) => setPersona(event.target.value)}
-                />
-                <label htmlFor='happy' className='mg-left-sm'>
-                    Grouchy Programmer
-                </label>
-                <br />
-                <input
-                    type='radio'
-                    name='happy'
-                    value={personas.wise}
-                    className='radio mg-top-sm'
-                    checked={persona === personas.wise}
-                    onChange={(event) => setPersona(event.target.value)}
-                />
-                <label htmlFor='happy' className='mg-left-sm'>
-                    Wise Programmer
-                </label>
-                <br />
-                <input
-                    type='radio'
-                    name='happy'
-                    value={personas.damsel}
-                    className='radio mg-top-sm'
-                    checked={persona === personas.damsel}
-                    onChange={(event) => setPersona(event.target.value)}
-                />
-                <label htmlFor='happy' className='mg-left-sm'>
-                    Damsel in Distress
-                </label>
-                <br />
+                {personasArray.map(([key, value], index) => {
+                    console.log(index);
+                    return (
+                        <Personas
+                            personaValue={value}
+                            personaKey={key}
+                            key={index}
+                            persona={persona}
+                            setPersona={setPersona}
+                        />
+                    );
+                })}
             </div>
         </div>
     );

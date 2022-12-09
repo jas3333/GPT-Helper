@@ -9,12 +9,19 @@ const Home = () => {
     const [loading, setLoading] = useState(false);
 
     const personas = {
+        default: '',
         happy: 'Respond like a happy person that over uses emojis.',
         surfer: 'Respond like a california surfer.',
         grouch: 'Respond like a grouchy old programmer.',
         wise: 'Respond like a wise programming with lots of detail.',
         snob: 'Respond like a snob.',
         damsel: 'Respond like a damsel in distress.',
+        comedian: 'Respond like a comedian that tells lots of jokes.',
+        mobboss: 'Respond like mob boss.',
+        journalist: 'Respond like a prestigious journalist that writes descriptive articles.',
+        cartman: 'Respond like Eric Cartman from South Park.',
+        rick: 'Respond like Rick from Rick and Morty.',
+        stewie: 'Respond like Stewie Griffon.',
     };
 
     // Values for PromptController
@@ -22,7 +29,7 @@ const Home = () => {
     const [tokens, setTokens] = useState(512);
     const [nucleus, setNucleus] = useState(0.5);
     const [selectedModel, setSelectedModel] = useState('text-davinci-003');
-    const [persona, setPersona] = useState(personas.happy);
+    const [persona, setPersona] = useState(personas.wise);
     const [threadSize, setThreadSize] = useState(3);
 
     // Values for Prompt
