@@ -44,7 +44,7 @@ const PromptController = ({
                     name='tokens'
                     value={tokens}
                     min='5'
-                    max='2048'
+                    max='3000'
                     onChange={(event) => setTokens(event.target.value)}
                     title='Sets max_token parameter in the api call. GPT will not generate more than the set tokens. This setting does not stop requests at the set tokens.'
                 />
@@ -139,6 +139,18 @@ const PromptController = ({
                 />
                 <label htmlFor='happy' className='mg-left-sm'>
                     Grouchy Programmer
+                </label>
+                <br />
+                <input
+                    type='radio'
+                    name='happy'
+                    value={personas.wise}
+                    className='radio mg-top-sm'
+                    checked={persona === personas.wise}
+                    onChange={(event) => setPersona(event.target.value)}
+                />
+                <label htmlFor='happy' className='mg-left-sm'>
+                    Wise Programmer
                 </label>
                 <br />
                 <input

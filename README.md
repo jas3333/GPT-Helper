@@ -40,6 +40,12 @@ Then just `npm start` inside the client directory.
 ### Personas
 
 ![](images/happy.png)
+Likes to be helpful, and it always cheery.
 ![](images/grouch.png)
+Sometimes helps you out, but usually tells you to go away.
 ![](images/surfer.png)
+Always happy and enjoys the waves.
 ![](images/damsel.png)
+Always struggling with things and asking for help.
+![](images/wise.png)
+Probably the best out of the group if you need help with code. Adds a lot of detail and can even write hugh tutorials for you.

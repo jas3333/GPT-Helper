@@ -1,4 +1,3 @@
-import Loading from './Loading';
 const Prompt = ({ question, setQuestion, onSubmit, loading }) => {
     return (
         <div className='container auto content-center align mg-bot-lg '>

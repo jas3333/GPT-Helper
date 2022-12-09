@@ -12,6 +12,7 @@ const Home = () => {
         happy: 'Respond like a happy person that over uses emojis.',
         surfer: 'Respond like a california surfer.',
         grouch: 'Respond like a grouchy old programmer.',
+        wise: 'Respond like a wise programming with lots of detail.',
         snob: 'Respond like a snob.',
         damsel: 'Respond like a damsel in distress.',
     };
