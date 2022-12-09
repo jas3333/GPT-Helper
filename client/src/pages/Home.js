@@ -46,8 +46,7 @@ const Home = () => {
         };
         const promptData = {
             model: selectedModel,
-
-            prompt: `${promptOptions}\n${conversation}\n${question}`,
+            prompt: `${promptOptions}${conversation}\n${question}.`,
             top_p: Number(nucleus),
             max_tokens: Number(tokens),
             temperature: Number(temperature),

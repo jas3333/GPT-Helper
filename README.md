@@ -12,9 +12,9 @@ This app isn't fully featured yet. I still have a lot of work to do, but it does
 
 ## To Do:
 
-1. Add more options to the PromptController
+1. ~~Add more options to the PromptController~~
 2. Add a toggle switch so the PromptController is a drop down menu instead of it always showing.
-3. Add a backend and connect it to MongoDB to save conversations.
+3. Add a backend and connect it to MongoDB to save conversations. Will probably create a separate branch for this.
 4. Make it mobile friendly. Not a top priority though since I just use this in a browser on my desktop.
 
 ### To install:
@@ -37,4 +37,9 @@ REACT_APP_OPENAI_KEY=yourkey
 
 Then just `npm start` inside the client directory.
 
-![](images/GPTChat.png)
+### Personas
+
+![](images/happy.png)
+![](images/grouch.png)
+![](images/surfer.png)
+![](images/damsel.png)
