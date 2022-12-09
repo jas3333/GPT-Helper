@@ -13,7 +13,7 @@ const Home = () => {
     const [conversation, setConversation] = useState('');
 
     // Crappy workaround to get markdown because I can't figure out how to separate regular text and code
-    const promptOptions = 'Respond in markdown.\n';
+    const promptOptions = 'Respond in markdown.\nUse codeblock if there is code.\n';
 
     // Values for Completion
     const [chatResponse, setChatResponse] = useState([]);

@@ -51,6 +51,7 @@ const PromptController = ({
                     title='Change the model.'
                 >
                     <option value='text-davinci-003'>Davinci</option>
+                    <option value='code-davinci-002'>Code-Davinci</option>
                     <option value='text-curie-001'>Curie</option>
                     <option value='text-babbage-001'>Babbage</option>
                     <option value='text-ada-001'>Ada</option>
