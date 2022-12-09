@@ -7,8 +7,9 @@ const PromptController = ({
     setConversation,
     nucleus,
     setNucleus,
-    stopTokens,
-    setStopTokens,
+    setPersona,
+    persona,
+    personas,
 }) => {
     return (
         <div className='settings'>
@@ -64,6 +65,58 @@ const PromptController = ({
             >
                 Reset
             </button>
+            <h3 className='text-center mg-top-md'>Personalities</h3>
+            <div className='underline-full mg-top-sm'></div>
+            <div className='mg-top-sm'>
+                <input
+                    type='radio'
+                    name='happy'
+                    value={personas.happy}
+                    className='radio'
+                    checked={persona === personas.happy}
+                    onChange={(event) => setPersona(event.target.value)}
+                />
+                <label htmlFor='happy' className='mg-left-sm'>
+                    Happy
+                </label>
+                <br />
+                <input
+                    type='radio'
+                    name='happy'
+                    value={personas.surfer}
+                    className='radio mg-top-sm'
+                    checked={persona === personas.surfer}
+                    onChange={(event) => setPersona(event.target.value)}
+                />
+                <label htmlFor='happy' className='mg-left-sm'>
+                    Surfer Dude
+                </label>
+                <br />
+                <input
+                    type='radio'
+                    name='happy'
+                    value={personas.snob}
+                    className='radio mg-top-sm'
+                    checked={persona === personas.snob}
+                    onChange={(event) => setPersona(event.target.value)}
+                />
+                <label htmlFor='happy' className='mg-left-sm'>
+                    Snob
+                </label>
+                <br />
+                <input
+                    type='radio'
+                    name='happy'
+                    value={personas.grouch}
+                    className='radio mg-top-sm'
+                    checked={persona === personas.grouch}
+                    onChange={(event) => setPersona(event.target.value)}
+                />
+                <label htmlFor='happy' className='mg-left-sm'>
+                    Grouchy Programmer
+                </label>
+                <br />
+            </div>
         </div>
     );
 };

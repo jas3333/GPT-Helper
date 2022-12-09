@@ -8,21 +8,29 @@ import PromptController from '../components/PromptController';
 const Home = () => {
     const [loading, setLoading] = useState(false);
 
+    const personas = {
+        happy: 'Respond like a happy person that over uses emojis.',
+        surfer: 'Respond like a california surfer.',
+        grouch: 'Respond like a grouchy old programmer.',
+        snob: 'Respond like a snob.',
+    };
+
+    // Values for PromptController
+    const [temperature, setTemperature] = useState(0.5);
+    const [tokens, setTokens] = useState(512);
+    const [nucleus, setNucleus] = useState(0.5);
+    const [selectedModel, setSelectedModel] = useState('text-davinci-003');
+    const [persona, setPersona] = useState(personas.happy);
+
     // Values for Prompt
     const [question, setQuestion] = useState('');
     const [conversation, setConversation] = useState('');
 
     // Crappy workaround to get markdown because I can't figure out how to separate regular text and code
-    const promptOptions = 'Respond in markdown.\nUse codeblock if there is code.\n';
+    const promptOptions = `Respond in markdown and use a codeblock if there is code. ${persona} STOP`;
 
     // Values for Completion
     const [chatResponse, setChatResponse] = useState([]);
-
-    // Values for PromptController
-    const [temperature, setTemperature] = useState(0);
-    const [tokens, setTokens] = useState(512);
-    const [nucleus, setNucleus] = useState(0);
-    const [selectedModel, setSelectedModel] = useState('text-davinci-003');
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -44,6 +52,7 @@ const Home = () => {
             stream: false,
             logprobs: null,
         };
+        console.log(promptOptions);
 
         try {
             const response = await axios.post('https://api.openai.com/v1/completions', promptData, options);
@@ -86,6 +95,9 @@ const Home = () => {
         setConversation,
         nucleus,
         setNucleus,
+        setPersona,
+        persona,
+        personas,
     };
 
     return (
