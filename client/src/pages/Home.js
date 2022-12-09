@@ -28,8 +28,8 @@ const Home = () => {
     const [question, setQuestion] = useState('');
     const [conversation, setConversation] = useState('');
 
-    // Crappy workaround to get markdown because I can't figure out how to separate regular text and code
-    const promptOptions = `Respond in markdown and use a codeblock if there is code. ${persona} STOP`;
+    // Sets the prompt with instructions.
+    const promptOptions = `Respond in markdown and use a codeblock with the language if there is code. ${persona} STOP`;
 
     // Values for Completion
     const [chatResponse, setChatResponse] = useState([]);
@@ -47,7 +47,7 @@ const Home = () => {
         const promptData = {
             model: selectedModel,
 
-            prompt: `${promptOptions}${conversation}\nQ:${question}`,
+            prompt: `${promptOptions}\n${conversation}\n${question}`,
             top_p: Number(nucleus),
             max_tokens: Number(tokens),
             temperature: Number(temperature),
@@ -63,10 +63,10 @@ const Home = () => {
                 promptQuestion: question,
                 totalTokens: response.data.usage.total_tokens,
             };
-            console.log(chatResponse);
 
-            // Allows the bot to remember previous questions
+            console.log(chatResponse);
             console.log('Conversation', conversation);
+
             setQuestion('');
             setLoading(false);
             setChatResponse([...chatResponse, newChat]);
@@ -83,9 +83,7 @@ const Home = () => {
 
     useEffect(() => {
         if (chatResponse.length > threadSize) {
-            // Create a new array using the spread operator
             const newArray = [...chatResponse];
-            // Use the splice method to remove excess elements from the array
             newArray.splice(0, newArray.length - threadSize);
             setConversation(newArray.map((chat) => `${chat.promptQuestion}\n${chat.botResponse}\n`));
         } else {
@@ -103,7 +101,6 @@ const Home = () => {
         tokens,
         setTokens,
         setSelectedModel,
-        setConversation,
         nucleus,
         setNucleus,
         setPersona,
@@ -111,6 +108,7 @@ const Home = () => {
         personas,
         setThreadSize,
         threadSize,
+        setChatResponse,
     };
 
     return (

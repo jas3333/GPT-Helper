@@ -4,7 +4,6 @@ const PromptController = ({
     tokens,
     setTokens,
     setSelectedModel,
-    setConversation,
     nucleus,
     setNucleus,
     setPersona,
@@ -12,6 +11,7 @@ const PromptController = ({
     personas,
     setThreadSize,
     threadSize,
+    setChatResponse,
 }) => {
     return (
         <div className='settings '>
@@ -53,7 +53,7 @@ const PromptController = ({
                     type='range'
                     name='tokens'
                     value={threadSize}
-                    min='3'
+                    min='1'
                     max='10'
                     step='1'
                     onChange={(event) => setThreadSize(event.target.value)}
@@ -74,13 +74,25 @@ const PromptController = ({
             <button
                 className='btn mg-top-md mg-left-sm'
                 title='Reset the conversation thread. As the conversation gets bigger, so will the token requirements.'
-                onClick={() => setConversation('')}
+                onClick={() => setChatResponse([])}
             >
                 Reset
             </button>
             <h3 className='text-center mg-top-md'>Personalities</h3>
             <div className='underline-full mg-top-sm'></div>
             <div className='mg-top-sm'>
+                <input
+                    type='radio'
+                    name='happy'
+                    value=''
+                    className='radio'
+                    checked={persona === ''}
+                    onChange={(event) => setPersona(event.target.value)}
+                />
+                <label htmlFor='happy' className='mg-left-sm'>
+                    No Persona
+                </label>
+                <br />
                 <input
                     type='radio'
                     name='happy'
