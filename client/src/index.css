@@ -116,6 +116,11 @@ p {
     outline-style: none;
 }
 
+input[type='radio'] {
+    padding: 15px;
+    border-radius: 15px;
+}
+
 .input-checkbox {
     width: 50px;
 }
@@ -193,6 +198,9 @@ a:hover {
 .btn:hover {
     background-color: var(--fc-light);
     color: var(--background-dark);
+}
+.btn:active {
+    transform: scale(0.98);
 }
 .btn-details {
     border: solid 2px var(--btn-color);

@@ -13,6 +13,7 @@ const Home = () => {
         surfer: 'Respond like a california surfer.',
         grouch: 'Respond like a grouchy old programmer.',
         snob: 'Respond like a snob.',
+        damsel: 'Respond like a damsel in distress.',
     };
 
     // Values for PromptController
@@ -21,6 +22,7 @@ const Home = () => {
     const [nucleus, setNucleus] = useState(0.5);
     const [selectedModel, setSelectedModel] = useState('text-davinci-003');
     const [persona, setPersona] = useState(personas.happy);
+    const [threadSize, setThreadSize] = useState(3);
 
     // Values for Prompt
     const [question, setQuestion] = useState('');
@@ -44,6 +46,7 @@ const Home = () => {
         };
         const promptData = {
             model: selectedModel,
+
             prompt: `${promptOptions}${conversation}\nQ:${question}`,
             top_p: Number(nucleus),
             max_tokens: Number(tokens),
@@ -52,7 +55,6 @@ const Home = () => {
             stream: false,
             logprobs: null,
         };
-        console.log(promptOptions);
 
         try {
             const response = await axios.post('https://api.openai.com/v1/completions', promptData, options);
@@ -61,13 +63,10 @@ const Home = () => {
                 promptQuestion: question,
                 totalTokens: response.data.usage.total_tokens,
             };
-
-            console.log(response);
             console.log(chatResponse);
 
             // Allows the bot to remember previous questions
-            setConversation(`${conversation}\n${question}\n${newChat.botResponse}`);
-            console.log(conversation);
+            console.log('Conversation', conversation);
             setQuestion('');
             setLoading(false);
             setChatResponse([...chatResponse, newChat]);
@@ -81,6 +80,18 @@ const Home = () => {
     useEffect(() => {
         window.scrollTo(0, document.body.scrollHeight);
     }, [chatResponse]);
+
+    useEffect(() => {
+        if (chatResponse.length > threadSize) {
+            // Create a new array using the spread operator
+            const newArray = [...chatResponse];
+            // Use the splice method to remove excess elements from the array
+            newArray.splice(0, newArray.length - threadSize);
+            setConversation(newArray.map((chat) => `${chat.promptQuestion}\n${chat.botResponse}\n`));
+        } else {
+            setConversation(chatResponse.map((chat) => `${chat.promptQuestion}\n${chat.botResponse}\n`));
+        }
+    }, [chatResponse, threadSize]);
 
     // Props for Prompt component
     const forPrompt = { question, setQuestion, onSubmit, loading };
@@ -98,6 +109,8 @@ const Home = () => {
         setPersona,
         persona,
         personas,
+        setThreadSize,
+        threadSize,
     };
 
     return (

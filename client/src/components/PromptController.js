@@ -10,10 +10,12 @@ const PromptController = ({
     setPersona,
     persona,
     personas,
+    setThreadSize,
+    threadSize,
 }) => {
     return (
-        <div className='settings'>
-            <form className='container-col'>
+        <div className='settings '>
+            <form className='container-col '>
                 <label htmlFor='temperature'>{`Temperature: ${temperature}`}</label>
                 <input
                     type='range'
@@ -46,6 +48,17 @@ const PromptController = ({
                     onChange={(event) => setTokens(event.target.value)}
                     title='Sets max_token parameter in the api call. GPT will not generate more than the set tokens. This setting does not stop requests at the set tokens.'
                 />
+                <label>{`Max Threads: ${threadSize}`}</label>
+                <input
+                    type='range'
+                    name='tokens'
+                    value={threadSize}
+                    min='3'
+                    max='10'
+                    step='1'
+                    onChange={(event) => setThreadSize(event.target.value)}
+                    title='Sets the max thread size. This will set how large the chat bots memory can be.'
+                />
                 <select
                     className='mg-top-md pad-sm'
                     onChange={(event) => setSelectedModel(event.target.value)}
@@ -59,7 +72,7 @@ const PromptController = ({
                 </select>
             </form>
             <button
-                className='btn mg-top-md'
+                className='btn mg-top-md mg-left-sm'
                 title='Reset the conversation thread. As the conversation gets bigger, so will the token requirements.'
                 onClick={() => setConversation('')}
             >
@@ -96,7 +109,7 @@ const PromptController = ({
                     type='radio'
                     name='happy'
                     value={personas.snob}
-                    className='radio mg-top-sm'
+                    className='mg-top-sm'
                     checked={persona === personas.snob}
                     onChange={(event) => setPersona(event.target.value)}
                 />
@@ -114,6 +127,18 @@ const PromptController = ({
                 />
                 <label htmlFor='happy' className='mg-left-sm'>
                     Grouchy Programmer
+                </label>
+                <br />
+                <input
+                    type='radio'
+                    name='happy'
+                    value={personas.damsel}
+                    className='radio mg-top-sm'
+                    checked={persona === personas.damsel}
+                    onChange={(event) => setPersona(event.target.value)}
+                />
+                <label htmlFor='happy' className='mg-left-sm'>
+                    Damsel in Distress
                 </label>
                 <br />
             </div>
