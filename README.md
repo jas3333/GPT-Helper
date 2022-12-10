@@ -60,13 +60,29 @@ to the address your system is running it on. You can change the connection strin
 
 ### Personas
 
-![](images/happy.png)
+#### Happy Guy
+
 Likes to be helpful, and it always cheery.
-![](images/grouch.png)
+![](images/happy.png)
+
+#### Old Grouchy Progammer
+
 Sometimes helps you out, but usually tells you to go away.
-![](images/surfer.png)
+![](images/grouch.png)
+
+#### Surfer Dude
+
 Always happy and enjoys the waves.
-![](images/damsel.png)
+![](images/surfer.png)
+
+#### Damsel in Distress
+
 Always struggling with things and asking for help.
-![](images/wise.png)
+![](images/damsel.png)
+
+#### Wise Programmer
+
 Probably the best out of the group if you need help with code. Adds a lot of detail and can even write hugh tutorials for you.
+![](images/wise.png)
+
+There are many more to experiment with, and it's really easy to add more. You'll find the personas data in the Home.js file
