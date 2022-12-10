@@ -37,7 +37,7 @@ const Home = () => {
     const [conversation, setConversation] = useState('');
 
     // Sets the prompt with instructions.
-    const promptOptions = `Respond in markdown and use a codeblock with the language if there is code. ${persona} STOP`;
+    const promptOptions = `Respond in markdown and use a codeblock with the language if there is code. Your name is ChatBot. ${persona} STOP`;
 
     // Values for Completion
     const [chatResponse, setChatResponse] = useState([]);
@@ -84,6 +84,11 @@ const Home = () => {
         }
     };
 
+    const reset = () => {
+        setChatResponse([]);
+        setConversation('');
+    };
+
     // Scrolls to bottom of the page as new content is created
     useEffect(() => {
         window.scrollTo(0, document.body.scrollHeight);
@@ -117,6 +122,7 @@ const Home = () => {
         setThreadSize,
         threadSize,
         setChatResponse,
+        reset,
     };
 
     return (

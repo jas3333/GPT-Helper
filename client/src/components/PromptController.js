@@ -12,7 +12,7 @@ const PromptController = ({
     personas,
     setThreadSize,
     threadSize,
-    setChatResponse,
+    reset,
 }) => {
     const personasArray = Object.entries(personas);
     return (
@@ -76,7 +76,7 @@ const PromptController = ({
             <button
                 className='btn mg-top-md mg-left-sm'
                 title='Reset the conversation thread. As the conversation gets bigger, so will the token requirements.'
-                onClick={() => setChatResponse([])}
+                onClick={reset}
             >
                 Reset
             </button>
