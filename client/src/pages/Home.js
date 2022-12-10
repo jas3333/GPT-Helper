@@ -42,6 +42,17 @@ const Home = () => {
     // Values for Completion
     const [chatResponse, setChatResponse] = useState([]);
 
+    const onSave = async () => {
+        const packedConversation = { title: chatResponse[0].promptQuestion, conversation: [...chatResponse] };
+        setChatResponse([]);
+
+        try {
+            const post = await axios.post('http://localhost:5001/api', packedConversation);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const onSubmit = async (event) => {
         event.preventDefault();
 
@@ -116,6 +127,7 @@ const Home = () => {
         setThreadSize,
         threadSize,
         setChatResponse,
+        onSave,
     };
 
     return (

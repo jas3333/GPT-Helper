@@ -13,6 +13,7 @@ const PromptController = ({
     setThreadSize,
     threadSize,
     setChatResponse,
+    onSave,
 }) => {
     const personasArray = Object.entries(personas);
     return (
@@ -73,13 +74,19 @@ const PromptController = ({
                     <option value='text-ada-001'>Ada</option>
                 </select>
             </form>
-            <button
-                className='btn mg-top-md mg-left-sm'
-                title='Reset the conversation thread. As the conversation gets bigger, so will the token requirements.'
-                onClick={() => setChatResponse([])}
-            >
-                Reset
-            </button>
+            <div className='container-col '>
+                <button
+                    className='btn mg-top-md mg-left-sm'
+                    title='Reset the conversation thread. As the conversation gets bigger, so will the token requirements.'
+                    onClick={() => setChatResponse([])}
+                >
+                    Reset
+                </button>
+                <button className='btn mg-top-sm mg-left-sm' onClick={onSave}>
+                    Save
+                </button>
+            </div>
+
             <h3 className='text-center mg-top-md'>Personalities</h3>
             <div className='underline-full mg-top-sm'></div>
             <div className='mg-top-sm'>

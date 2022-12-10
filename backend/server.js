@@ -1,24 +1,34 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 const app = express();
 app.use(express.json());
-// import mongoose from 'mongoose';
-// mongoose.connect('mongodb://localhost:27017/recipes');
+import mongoose from 'mongoose';
+mongoose.connect('mongodb://localhost:27017/GPTCoversations');
 
-const PORT = 5000;
+const PORT = process.env.PORT;
 
-// const recipeSchema = new mongoose.Schema({
-//     name: {
-//         type: String,
-//         required: true,
-//     },
-//     ingredients: {
-//         type: [],
-//         required: true,
-//     },
-//     directions: [],
-// });
-//
-// const Recipe = mongoose.model('Recipe', recipeSchema);
+const conversationSchema = new mongoose.Schema({
+    title: String,
+    conversation: [
+        {
+            botResponse: String,
+            promptQuestion: String,
+            totalTokens: Number,
+        },
+    ],
+});
+const Conversation = mongoose.model('Conversation', conversationSchema);
+
+app.post('/api', (req, res) => {
+    Conversation.create(req.body, (error, conversation) => {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Conversation has been saved.');
+        }
+    });
+});
 
 app.listen(PORT, () => {
     console.log(`Server listening on port: ${PORT}`);
