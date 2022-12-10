@@ -82,7 +82,7 @@ Always struggling with things and asking for help.
 
 #### Wise Programmer
 
-Probably the best out of the group if you need help with code. Adds a lot of detail and can even write hugh tutorials for you.
+Probably the best out of the group if you need help with code. Adds a lot of detail and can even write huge tutorials for you.
 ![](images/wise.png)
 
 There are many more to experiment with, and it's really easy to add more. You'll find the personas data in the Home.js file
