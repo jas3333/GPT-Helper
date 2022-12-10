@@ -12,7 +12,7 @@ const conversationSchema = new mongoose.Schema({
     title: String,
     conversation: [
         {
-            botResponse: String,
+            botResponse: { type: String, default: '' },
             promptQuestion: String,
             totalTokens: Number,
         },
@@ -20,12 +20,22 @@ const conversationSchema = new mongoose.Schema({
 });
 const Conversation = mongoose.model('Conversation', conversationSchema);
 
-app.post('/api', (req, res) => {
-    Conversation.create(req.body, (error, conversation) => {
+app.get('/api', async (req, res) => {
+    Conversation.find({}, (error, conversations) => {
         if (error) {
             console.log(error);
         } else {
-            console.log('Conversation has been saved.');
+            res.send(conversations);
+        }
+    });
+});
+
+app.post('/api', (req, res) => {
+    Conversation.findOneAndUpdate({ title: req.body.title }, req.body, { upsert: true }, (error, doc) => {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log(doc);
         }
     });
 });

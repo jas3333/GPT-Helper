@@ -17,7 +17,7 @@ const PromptController = ({
 }) => {
     const personasArray = Object.entries(personas);
     return (
-        <div className='settings '>
+        <div className='settings mg-top-vlg'>
             <form className='container-col '>
                 <label htmlFor='temperature'>{`Temperature: ${temperature}`}</label>
                 <input
@@ -91,7 +91,6 @@ const PromptController = ({
             <div className='underline-full mg-top-sm'></div>
             <div className='mg-top-sm'>
                 {personasArray.map(([key, value], index) => {
-                    console.log(index);
                     return (
                         <Personas
                             personaValue={value}

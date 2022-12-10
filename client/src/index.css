@@ -314,8 +314,8 @@ a:hover {
 .underline-mid {
     margin: 0 auto;
     width: 50%;
-    height: 2px;
-    background-color: var(--color-blend);
+    height: 1px;
+    background-color: antiquewhite;
     margin-bottom: 10px;
 }
 
@@ -507,6 +507,10 @@ a:hover {
 .tall {
     height: 75vh;
 }
+.short {
+    height: 300px;
+    overflow: scroll;
+}
 
 /* ╭────────────────────────────╮ */
 /* │           Colors           │ */
@@ -565,6 +569,7 @@ a:hover {
 /* │        Testing Zone        │ */
 /* ╰────────────────────────────╯ */
 
+/* Created By This Chat Bot ! */
 .spinner {
     width: 35px;
     height: 35px;

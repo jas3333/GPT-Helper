@@ -5,7 +5,7 @@ import Completion from '../components/Completion';
 import Prompt from '../components/Prompt';
 import PromptController from '../components/PromptController';
 
-const Home = () => {
+const Home = ({ chatResponse, setChatResponse }) => {
     const [loading, setLoading] = useState(false);
 
     const personas = {
@@ -18,10 +18,14 @@ const Home = () => {
         damsel: 'Respond like a damsel in distress.',
         comedian: 'Respond like a comedian that tells lots of jokes.',
         mobboss: 'Respond like mob boss.',
-        journalist: 'Respond like a prestigious journalist that writes descriptive articles.',
+        journalist: 'Respond like a prestigious journalist always write a descriptive article.',
         cartman: 'Respond like Eric Cartman from South Park.',
         rick: 'Respond like Rick from Rick and Morty.',
         stewie: 'Respond like Stewie Griffon.',
+        knight: 'Respond as a middle ages knight.',
+        caveman: 'Respond as a caveman.',
+        writer: 'Respond as a famous author.',
+        peasant: 'Respond as a depressed peasant living in the dark ages.',
     };
 
     // Values for PromptController
@@ -40,11 +44,10 @@ const Home = () => {
     const promptOptions = `Respond in markdown and use a codeblock with the language if there is code. ${persona} STOP`;
 
     // Values for Completion
-    const [chatResponse, setChatResponse] = useState([]);
 
     const onSave = async () => {
         const packedConversation = { title: chatResponse[0].promptQuestion, conversation: [...chatResponse] };
-        setChatResponse([]);
+        // setChatResponse([]);
 
         try {
             const post = await axios.post('http://localhost:5001/api', packedConversation);
@@ -81,9 +84,6 @@ const Home = () => {
                 promptQuestion: question,
                 totalTokens: response.data.usage.total_tokens,
             };
-
-            console.log(chatResponse);
-            console.log('Conversation', conversation);
 
             setQuestion('');
             setLoading(false);
@@ -131,7 +131,7 @@ const Home = () => {
     };
 
     return (
-        <div className='container-col auto mg-top-lg radius-md size-lg '>
+        <div className='container-col auto mg-top-vlg radius-md size-lg '>
             <div className='container-col '>
                 {chatResponse && chatResponse.map((item, index) => <Completion {...item} key={index} />)}
             </div>
