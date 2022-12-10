@@ -39,13 +39,29 @@ Then just `npm start` inside the client directory.
 
 ### Personas
 
-![](images/happy.png)
+Here is a sampling of the different personalities. I've added a bunch more and some are just hilarious.
+
+#### The Happy Guy
+
 Likes to be helpful, and it always cheery.
-![](images/grouch.png)
+![](images/happy.png)
+
+#### The Grouch
+
 Sometimes helps you out, but usually tells you to go away.
-![](images/surfer.png)
+![](images/grouch.png)
+
+#### The Surfer
+
 Always happy and enjoys the waves.
-![](images/damsel.png)
+![](images/surfer.png)
+
+#### The Damsel in Distress
+
 Always struggling with things and asking for help.
-![](images/wise.png)
+![](images/damsel.png)
+
+#### The Wise Programmer
+
 Probably the best out of the group if you need help with code. Adds a lot of detail and can even write hugh tutorials for you.
+![](images/wise.png)
