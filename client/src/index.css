@@ -94,12 +94,21 @@ p {
 /* ╭────────────────────────────╮ */
 /* │           Input            │ */
 /* ╰────────────────────────────╯ */
+
 .input-text {
-    height: 28px;
-    padding: 5px;
-    border-radius: 5px;
+    color: antiquewhite;
+    padding: 15px;
+    width: 910px;
     border: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left: solid 1px antiquewhite;
+    border-top: solid 1px antiquewhite;
+    border-bottom: solid 1px antiquewhite;
+    background-color: #333b40;
+    resize: none;
 }
+
 .input-text-lg {
     color: antiquewhite;
     font-size: 1.2rem;
@@ -569,7 +578,7 @@ a:hover {
     width: 35px;
     height: 35px;
     background-color: #667581;
-    margin: 12px 15px 0px 0px;
+    margin: auto 0px 5px 0px;
     border-radius: 100%;
     -webkit-animation: sk-scaleout 1s infinite ease-in-out;
     animation: sk-scaleout 1s infinite ease-in-out;
@@ -577,8 +586,11 @@ a:hover {
 
 .loader {
     width: 40px;
-    height: 60px;
+    display: flex;
     border-bottom-right-radius: 10px;
+    border-top: solid 1px antiquewhite;
+    border-right: solid 1px antiquewhite;
+    border-bottom: solid 1px antiquewhite;
     border-top-right-radius: 10px;
     background-color: #333b40;
 }
