@@ -74,9 +74,6 @@ const Home = () => {
                 totalTokens: response.data.usage.total_tokens,
             };
 
-            console.log(chatResponse);
-            console.log('Conversation', conversation);
-
             setQuestion('');
             setLoading(false);
             setChatResponse([...chatResponse, newChat]);

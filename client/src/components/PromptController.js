@@ -84,7 +84,6 @@ const PromptController = ({
             <div className='underline-full mg-top-sm'></div>
             <div className='mg-top-sm'>
                 {personasArray.map(([key, value], index) => {
-                    console.log(index);
                     return (
                         <Personas
                             personaValue={value}
