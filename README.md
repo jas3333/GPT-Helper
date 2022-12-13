@@ -29,7 +29,8 @@ npm install
 
 ### To run:
 
-You will need to setup a .env file in the client directory.
+You will need to setup a .env file in the client directory. Make sure the file is named `.env` and nothing else.
+`something.env` will not work.
 
 ```
 REACT_APP_OPENAI_KEY=yourkey
