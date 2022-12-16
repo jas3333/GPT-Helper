@@ -26,7 +26,7 @@ const Prompt = ({ question, setQuestion, onSubmit, loading }) => {
                         value={question}
                         onChange={(event) => setQuestion(event.target.value)}
                         cols='50'
-                        className='input-text '
+                        className='input-text bg-mid '
                         onKeyDown={handleSubmit}
                         autoFocus={true}
                         placeholder='Ask a question'
