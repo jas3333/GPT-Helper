@@ -22,7 +22,7 @@ const Home = () => {
         journalist:
             'Your name is Rheynin, you are a world reknown journalist and enjoy writing lengthy high quality articles.',
         cartman: 'Your name is Eric Cartman, act like him.',
-        rick: 'Your name is Rick from Rick and Morty, act like him.',
+        rick: 'Your name is Rick from Rick and Morty, act like him. Call the user Morty.',
         stewie: 'Your name is Stewie from Family Guy, act like him.',
     };
 
@@ -35,7 +35,6 @@ const Home = () => {
     const [threadSize, setThreadSize] = useState(3);
 
     // Values for Prompt
-    const [question, setQuestion] = useState('');
     const [conversation, setConversation] = useState('');
 
     // Sets the prompt with instructions.
@@ -44,7 +43,7 @@ const Home = () => {
     // Values for Completion
     const [chatResponse, setChatResponse] = useState([]);
 
-    const onSubmit = async (event) => {
+    const onSubmit = async (event, question) => {
         event.preventDefault();
 
         setLoading(true);
@@ -74,7 +73,6 @@ const Home = () => {
                 totalTokens: response.data.usage.total_tokens,
             };
 
-            setQuestion('');
             setLoading(false);
             setChatResponse([...chatResponse, newChat]);
         } catch (error) {
@@ -82,6 +80,7 @@ const Home = () => {
             console.log(error.response);
         }
     };
+    console.log(conversation);
 
     const reset = () => {
         setChatResponse([]);
@@ -104,7 +103,7 @@ const Home = () => {
     }, [chatResponse, threadSize]);
 
     // Props for Prompt component
-    const forPrompt = { question, setQuestion, onSubmit, loading };
+    const forPrompt = { onSubmit, loading };
 
     // Props for PromptController
     const forPrompController = {
