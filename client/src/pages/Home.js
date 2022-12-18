@@ -9,7 +9,7 @@ import Error from '../components/Error';
 const Home = () => {
     const [loading, setLoading] = useState(false);
     const [showError, setShowError] = useState(false);
-    const [error, setError] = useState('placeholder');
+    const [error, setError] = useState('');
 
     const personas = {
         default: '',
@@ -128,9 +128,7 @@ const Home = () => {
     };
 
     const forError = {
-        setError,
         setShowError,
-        showError,
         error,
     };
 
