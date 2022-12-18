@@ -12,8 +12,8 @@ In order to use it, you will need an Openai account and an API key.
 3. ~~Add a backend and connect it to MongoDB to save conversations.~~
    I created a separate repository for this.
 4. Make it mobile friendly. Not a top priority though since I just use this in a browser on my desktop.
-5. Make it so errors show up in the completion section. In the mean time, if you're not getting a response open
-   up the dev tools in the browser and check for errors. A lack of response is almost always an API key issue.
+5. ~~Make it so errors show up in the completion section. In the mean time, if you're not getting a response open
+   up the dev tools in the browser and check for errors. A lack of response is almost always an API key issue.~~
 
 ### To install:
 

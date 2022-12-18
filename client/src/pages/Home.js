@@ -4,9 +4,12 @@ import axios from 'axios';
 import Completion from '../components/Completion';
 import Prompt from '../components/Prompt';
 import PromptController from '../components/PromptController';
+import Error from '../components/Error';
 
 const Home = () => {
     const [loading, setLoading] = useState(false);
+    const [showError, setShowError] = useState(false);
+    const [error, setError] = useState('placeholder');
 
     const personas = {
         default: '',
@@ -31,7 +34,7 @@ const Home = () => {
     const [tokens, setTokens] = useState(512);
     const [nucleus, setNucleus] = useState(0.5);
     const [selectedModel, setSelectedModel] = useState('text-davinci-003');
-    const [persona, setPersona] = useState(personas.wise);
+    const [persona, setPersona] = useState(personas.default);
     const [threadSize, setThreadSize] = useState(3);
 
     // Values for Prompt
@@ -77,10 +80,11 @@ const Home = () => {
             setChatResponse([...chatResponse, newChat]);
         } catch (error) {
             setLoading(false);
+            setError(error.response.data.error.message);
+            setShowError(true);
             console.log(error.response);
         }
     };
-    console.log(conversation);
 
     const reset = () => {
         setChatResponse([]);
@@ -123,8 +127,16 @@ const Home = () => {
         reset,
     };
 
+    const forError = {
+        setError,
+        setShowError,
+        showError,
+        error,
+    };
+
     return (
         <div className='container-col auto mg-top-lg radius-md size-lg '>
+            {showError && <Error {...forError} />}
             <div className='container-col '>
                 {chatResponse && chatResponse.map((item, index) => <Completion {...item} key={index} />)}
             </div>

@@ -568,6 +568,13 @@ img {
 .bg-dark {
     background-color: #111418;
 }
+.bg-error {
+    background-color: #b36c6c;
+}
+
+.fc-red {
+    color: red;
+}
 
 /* ╭────────────────────────────╮ */
 /* │           Mobile           │ */
