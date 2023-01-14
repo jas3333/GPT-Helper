@@ -4,7 +4,7 @@ const Error = ({ error, setShowError }) => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             setShowError(false);
-        }, 5000);
+        }, 8000);
         return () => clearTimeout(timeout);
     }, [setShowError]);
 

@@ -46,7 +46,7 @@ const PromptController = ({
                     name='tokens'
                     value={tokens}
                     min='5'
-                    max='4096'
+                    max='2048'
                     onChange={(event) => setTokens(event.target.value)}
                     title='Sets max_token parameter in the api call. GPT will not generate more than the set tokens. This setting does not stop requests at the set tokens.'
                 />

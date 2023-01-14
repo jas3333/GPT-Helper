@@ -104,6 +104,7 @@ const Home = () => {
         } else {
             setConversation(chatResponse.map((chat) => `${chat.promptQuestion}\n${chat.botResponse}\n`));
         }
+        console.log(conversation);
     }, [chatResponse, threadSize]);
 
     // Props for Prompt component
