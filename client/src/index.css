@@ -422,6 +422,10 @@ img {
     text-align: center;
 }
 
+.auto-right {
+    margin-left: auto;
+}
+
 /* ╭────────────────────────────╮ */
 /* │           Sizing           │ */
 /* ╰────────────────────────────╯ */
@@ -581,26 +585,12 @@ img {
 /* ╰────────────────────────────╯ */
 
 @media all and (max-width: 700px) {
-    img {
-        width: 350px;
-    }
-    input {
-        height: 50px;
-    }
     .navbar {
         padding: 0;
-    }
-    .nav-logo {
-        margin-left: auto;
-    }
-    .mhide {
         display: none;
     }
-    .btn-details {
-        margin: 10px auto 20px auto;
-    }
     .container-col {
-        width: 350px;
+        width: 450px;
         margin: 10px auto;
     }
     .container {

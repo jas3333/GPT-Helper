@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import Completion from '../components/Completion';
+import Navbar from '../components/Navbar';
 import Prompt from '../components/Prompt';
 import PromptController from '../components/PromptController';
 import Error from '../components/Error';
@@ -37,6 +38,7 @@ const Home = () => {
     const [selectedModel, setSelectedModel] = useState('text-davinci-003');
     const [persona, setPersona] = useState(personas.default);
     const [threadSize, setThreadSize] = useState(3);
+    const [showSettings, setShowSettings] = useState(true);
 
     // Values for Prompt
     const [conversation, setConversation] = useState('');
@@ -113,20 +115,21 @@ const Home = () => {
 
     // Props for PromptController
     const forPrompController = {
-        temperature,
-        setTemperature,
+        reset,
         tokens,
-        setTokens,
-        setSelectedModel,
         nucleus,
-        setNucleus,
-        setPersona,
         persona,
         personas,
-        setThreadSize,
         threadSize,
+        showSettings,
+        setTokens,
+        setNucleus,
+        setPersona,
+        temperature,
+        setThreadSize,
+        setTemperature,
         setChatResponse,
-        reset,
+        setSelectedModel,
     };
 
     const forError = {
@@ -135,14 +138,17 @@ const Home = () => {
     };
 
     return (
-        <div className='container-col auto mg-top-lg radius-md size-lg '>
-            {showError && <Error {...forError} />}
-            <div className='container-col '>
-                {chatResponse && chatResponse.map((item, index) => <Completion {...item} key={index} />)}
+        <>
+            <Navbar showSettings={showSettings} setShowSettings={setShowSettings} />
+            <div className='container-col auto mg-top-vlg radius-md size-lg '>
+                {showError && <Error {...forError} />}
+                <div className='container-col '>
+                    {chatResponse && chatResponse.map((item, index) => <Completion {...item} key={index} />)}
+                </div>
+                <PromptController {...forPrompController} />
+                <Prompt {...forPrompt} />
             </div>
-            <PromptController {...forPrompController} />
-            <Prompt {...forPrompt} />
-        </div>
+        </>
     );
 };
 

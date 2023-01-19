@@ -13,10 +13,11 @@ const PromptController = ({
     setThreadSize,
     threadSize,
     reset,
+    showSettings,
 }) => {
     const personasArray = Object.entries(personas);
     return (
-        <div className='settings '>
+        <div className={`${showSettings ? 'settings' : 'settings hide'}`}>
             <form className='container-col '>
                 <label htmlFor='temperature'>{`Temperature: ${temperature}`}</label>
                 <input
