@@ -8,7 +8,7 @@ In order to use it, you will need an Openai account and an API key.
 ## To Do:
 
 1. ~~Add more options to the PromptController~~
-2. Add a toggle switch so the PromptController is a drop down menu instead of it always showing.
+2. ~~Add a toggle switch so the PromptController is a drop down menu instead of it always showing.~~
 3. ~~Add a backend and connect it to MongoDB to save conversations.~~
    I created a separate repository for this.
 4. Make it mobile friendly. Not a top priority though since I just use this in a browser on my desktop.
