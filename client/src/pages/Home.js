@@ -7,6 +7,9 @@ import Prompt from '../components/Prompt';
 import PromptController from '../components/PromptController';
 import Error from '../components/Error';
 
+let savedConversation = JSON.parse(localStorage.getItem('conversation'));
+if (savedConversation) console.log('localstorage', savedConversation);
+
 const Home = () => {
     const [loading, setLoading] = useState(false);
     const [showError, setShowError] = useState(false);
@@ -47,7 +50,7 @@ const Home = () => {
     const promptOptions = `Respond in markdown and use a codeblock with the language if there is code. ${persona} STOP`;
 
     // Values for Completion
-    const [chatResponse, setChatResponse] = useState([]);
+    const [chatResponse, setChatResponse] = useState(savedConversation || []);
 
     const onSubmit = async (event, question) => {
         event.preventDefault();
@@ -92,6 +95,7 @@ const Home = () => {
     const reset = () => {
         setChatResponse([]);
         setConversation('');
+        localStorage.removeItem('conversation');
     };
 
     // Scrolls to bottom of the page as new content is created
@@ -104,10 +108,13 @@ const Home = () => {
             const newArray = [...chatResponse];
             newArray.splice(0, newArray.length - threadSize);
             setConversation(newArray.map((chat) => `${chat.promptQuestion}\n${chat.botResponse}\n`));
+            savedConversation = chatResponse;
+            localStorage.setItem('conversation', JSON.stringify(savedConversation));
         } else {
             setConversation(chatResponse.map((chat) => `${chat.promptQuestion}\n${chat.botResponse}\n`));
+            savedConversation = chatResponse;
+            localStorage.setItem('conversation', JSON.stringify(savedConversation));
         }
-        console.log(conversation);
     }, [chatResponse, threadSize]);
 
     // Props for Prompt component
