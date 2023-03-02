@@ -47,7 +47,7 @@ const Home = () => {
     const [conversation, setConversation] = useState('');
 
     // Sets the prompt with instructions.
-    const promptOptions = `Respond to the user in markdown. ${persona} STOP`;
+    const promptOptions = `Respond to the user in markdown. ${persona}`;
 
     // Values for Completion
     const [chatResponse, setChatResponse] = useState(savedConversation || []);
