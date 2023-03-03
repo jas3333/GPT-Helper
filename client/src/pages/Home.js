@@ -38,7 +38,7 @@ const Home = () => {
     const [temperature, setTemperature] = useState(0.5);
     const [tokens, setTokens] = useState(512);
     const [nucleus, setNucleus] = useState(0.5);
-    const [selectedModel, setSelectedModel] = useState('text-davinci-003');
+    const [selectedModel, setSelectedModel] = useState('gpt-3.5-turbo');
     const [persona, setPersona] = useState(personas.default);
     const [threadSize, setThreadSize] = useState(3);
     const [showSettings, setShowSettings] = useState(true);
