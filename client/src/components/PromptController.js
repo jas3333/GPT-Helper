@@ -67,6 +67,7 @@ const PromptController = ({
                     onChange={(event) => setSelectedModel(event.target.value)}
                     title='Change the model.'
                 >
+                    <option value='gpt-3.5-turbo'>GPT-3.5-Turbo</option>
                     <option value='text-davinci-003'>Davinci</option>
                     <option value='code-davinci-002'>Code-Davinci</option>
                     <option value='text-curie-001'>Curie</option>

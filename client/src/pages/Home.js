@@ -46,15 +46,11 @@ const Home = () => {
     // Values for Prompt
     const [conversation, setConversation] = useState('');
 
-    // Sets the prompt with instructions.
-    const promptOptions = `Respond in markdown and use a codeblock with the language if there is code. ${persona} STOP`;
-
     // Values for Completion
     const [chatResponse, setChatResponse] = useState(savedConversation || []);
 
     const onSubmit = async (event, question) => {
         event.preventDefault();
-
         setLoading(true);
         const options = {
             headers: {
@@ -62,33 +58,60 @@ const Home = () => {
                 'Content-Type': 'application/json',
             },
         };
-        const promptData = {
-            model: selectedModel,
-            prompt: `${promptOptions}${conversation}\nUser: ${question}.\n`,
-            top_p: Number(nucleus),
-            max_tokens: Number(tokens),
-            temperature: Number(temperature),
-            n: 1,
-            stream: false,
-            logprobs: null,
-            stop: ['STOP', 'User:'],
-        };
 
-        try {
-            const response = await axios.post('https://api.openai.com/v1/completions', promptData, options);
-            const newChat = {
-                botResponse: response.data.choices[0].text,
-                promptQuestion: question,
-                totalTokens: response.data.usage.total_tokens,
+        if (selectedModel === 'gpt-3.5-turbo') {
+            // Sets the prompt with instructions.
+            const promptOptions = `Respond to the user in markdown. ${persona} `;
+
+            const promptData = {
+                model: 'gpt-3.5-turbo',
+                messages: [{ role: 'user', content: `${promptOptions} ${conversation} ${question}` }],
             };
 
-            setLoading(false);
-            setChatResponse([...chatResponse, newChat]);
-        } catch (error) {
-            setLoading(false);
-            setError(error.response.data.error.message);
-            setShowError(true);
-            console.log(error.response);
+            try {
+                const response = await axios.post('https://api.openai.com/v1/chat/completions', promptData, options);
+                const newChat = {
+                    botResponse: response.data.choices[0].message.content,
+                    promptQuestion: question,
+                    totalTokens: response.data.usage.total_tokens,
+                };
+
+                setLoading(false);
+                setChatResponse([...chatResponse, newChat]);
+            } catch (error) {
+                setLoading(false);
+                setError(error.response.data.error.message);
+            }
+        } else {
+            const promptOptions = `Respond in markdown and use a codeblock with the language if there is code. ${persona} STOP `;
+            const promptData = {
+                model: selectedModel,
+                prompt: `${promptOptions}${conversation}\nUser: ${question}.\n`,
+                top_p: Number(nucleus),
+                max_tokens: Number(tokens),
+                temperature: Number(temperature),
+                n: 1,
+                stream: false,
+                logprobs: null,
+                stop: ['STOP', 'User:'],
+            };
+
+            try {
+                const response = await axios.post('https://api.openai.com/v1/completions', promptData, options);
+                const newChat = {
+                    botResponse: response.data.choices[0].text,
+                    promptQuestion: question,
+                    totalTokens: response.data.usage.total_tokens,
+                };
+
+                setLoading(false);
+                setChatResponse([...chatResponse, newChat]);
+            } catch (error) {
+                setLoading(false);
+                setError(error.response.data.error.message);
+                setShowError(true);
+                console.log(error.response);
+            }
         }
     };
 
