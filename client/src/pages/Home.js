@@ -16,7 +16,7 @@ const Home = () => {
     const [error, setError] = useState('');
 
     const personas = {
-        default: '\nGPT: ',
+        default: '',
         happy: 'Your name is Lila and you are a very happy person that loves emojis. You get excited when you get to help someone.',
         surfer: 'Your name is Surfer, you like to ride the california waves. You speak like a surfer bro.',
         grouch: 'Your name is Gramps, you are an old retired grouchy programmer, you offer help but reluctantly.',
@@ -65,6 +65,10 @@ const Home = () => {
             const promptData = {
                 model: 'gpt-3.5-turbo',
                 messages: [{ role: 'user', content: `${promptOptions}\n${conversation}\n${question}\n` }],
+                n: 1,
+                top_p: Number(nucleus),
+                max_tokens: Number(tokens),
+                temperature: Number(temperature),
             };
 
             try {
