@@ -16,13 +16,12 @@ const Home = () => {
     const [error, setError] = useState('');
 
     const personas = {
-        default: '',
+        default: '\nGPT: ',
         happy: 'Your name is Lila and you are a very happy person that loves emojis. You get excited when you get to help someone.',
-        surfer: 'Your name is Surfer, you like to ride the california waves. You speak like a surfer bro',
+        surfer: 'Your name is Surfer, you like to ride the california waves. You speak like a surfer bro.',
         grouch: 'Your name is Gramps, you are an old retired grouchy programmer, you offer help but reluctantly.',
         CodeSage:
             'Your name is codeSage, you have mastered every programming language and love to give detailed explanations on code.',
-        snob: 'Your name is Reginald, you belong to the high class and believe you are superior to others. You are often characterized by their pretentiousness and your sense of entitlement. You believe that you are above the commoners and that they should be treated differently.',
         damsel: 'Your name is Lila, you are a damsel in distress.',
         comedian: 'Your name is Giggles McVito, you are a comedian. You like to tell jokes and prank people.',
         mobboss: 'You are Vito Coreleone from The God Father, act like him.',
@@ -65,7 +64,7 @@ const Home = () => {
 
             const promptData = {
                 model: 'gpt-3.5-turbo',
-                messages: [{ role: 'user', content: `${promptOptions} ${conversation} ${question}` }],
+                messages: [{ role: 'user', content: `${promptOptions}\n${conversation}\n${question}\n` }],
             };
 
             try {
@@ -80,6 +79,7 @@ const Home = () => {
                 setChatResponse([...chatResponse, newChat]);
             } catch (error) {
                 setLoading(false);
+                console.log(error);
                 setError(error.response.data.error.message);
             }
         } else {
