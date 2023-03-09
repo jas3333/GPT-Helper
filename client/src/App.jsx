@@ -64,7 +64,9 @@ function App() {
 
     useEffect(() => {
         const savedConversation = localStorage.getItem('conversation');
-        setConversation(JSON.parse(savedConversation));
+        if (savedConversation) {
+            setConversation(JSON.parse(savedConversation));
+        }
 
         try {
             const response = axios.post('/api/v1/gpt/load');

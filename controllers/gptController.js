@@ -40,7 +40,7 @@ const sendQuestion = async (req, res) => {
             profilePic: personas[req.body.persona].profilePic,
         });
     } catch (error) {
-        console.log(error.data);
+        console.log(error);
         res.status(400).json({
             message: error.data,
         });
