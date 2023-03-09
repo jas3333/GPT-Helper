@@ -9,7 +9,7 @@ const GptApi = ({ promptQuestion }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post('http://localhost:4001/api/v1/gpt', {
+                const response = await axios.post('http://localhost:4015/api/v1/gpt', {
                     promptQuestion,
                     ...botSettings,
                 });

@@ -11,7 +11,7 @@ import gptRouter from './router/gptRouter.js';
 const app = express();
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, './client/build')));
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || 4005;
 
 app.use('/api/v1/gpt', gptRouter);
 

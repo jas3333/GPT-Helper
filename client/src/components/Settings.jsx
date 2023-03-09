@@ -39,7 +39,7 @@ const Settings = memo(({ botSettings, settingsChange, reset }) => {
                         className='slider'
                         id='tokens'
                         type='range'
-                        min='.1'
+                        min='0'
                         max='1'
                         step='.1'
                         name='temperature'

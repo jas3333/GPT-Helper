@@ -32,47 +32,38 @@ function App() {
 
         try {
             setIsLoading(true);
-            const response = await axios.post('/api/v1/gpt', {
+            const response = await axios.post('http://localhost:4015/api/v1/gpt', {
                 promptQuestion,
                 ...botSettings,
+                conversation: [...conversation],
             });
             const newChat = {
                 promptQuestion,
                 botResponse: response.data.message,
                 profilePic: response.data.profilePic,
+                usage: response.data.usage,
             };
+            if (conversation.length > 15) {
+                setConversation(conversation.shift());
+            }
             setConversation([...conversation, newChat]);
-
             localStorage.setItem('conversation', JSON.stringify([...conversation, newChat]));
         } catch (error) {
-            console.log(error.message);
+            console.log(error);
         }
         setIsLoading(false);
         setPromptQuestion('');
     };
 
     const reset = async () => {
-        try {
-            const response = await axios.post('/api/v1/gpt/reset');
-            console.log(response.data.message);
-            setConversation([]);
-            localStorage.removeItem('conversation');
-        } catch (error) {
-            console.log(error);
-        }
+        setConversation([]);
+        localStorage.removeItem('conversation');
     };
 
     useEffect(() => {
         const savedConversation = localStorage.getItem('conversation');
         if (savedConversation) {
             setConversation(JSON.parse(savedConversation));
-        }
-
-        try {
-            const response = axios.post('/api/v1/gpt/load');
-            console.log(response);
-        } catch (error) {
-            console.log(error);
         }
     }, []);
 

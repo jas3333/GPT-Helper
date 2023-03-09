@@ -1,13 +1,18 @@
 import axios from 'axios';
 import personas from './../data/personas.js';
-const conversation = [];
 
 const sendQuestion = async (req, res) => {
     const options = {
         headers: { Authorization: `Bearer ${process.env.OPEN_AI_KEY}`, 'Content-Type': 'application/json' },
     };
 
-    console.log(req.body);
+    console.log(req.body.conversation);
+
+    const conversation = req.body.conversation.map((item) => {
+        return `${item.promptQuestion} ${item.botResponse}`;
+    });
+
+    console.log(conversation);
 
     const promptData = {
         model: 'gpt-3.5-turbo',
@@ -25,19 +30,13 @@ const sendQuestion = async (req, res) => {
 
     try {
         const response = await axios.post('https://api.openai.com/v1/chat/completions', promptData, options);
-        conversation.push([req.body.promptQuestion, response.data.choices[0].message.content]);
-        console.log(conversation);
-
-        // Controls the size of the array that stores the bots memory.
-        if (conversation.length > 10) {
-            conversation.shift();
-        }
-
         console.log(response.data);
+        console.log(`Usage: ${response.data.usage.total_tokens}`);
 
         res.status(200).json({
             message: response.data.choices[0].message.content,
             profilePic: personas[req.body.persona].profilePic,
+            usage: response.data.usage.total_tokens,
         });
     } catch (error) {
         console.log(error);
@@ -47,14 +46,4 @@ const sendQuestion = async (req, res) => {
     }
 };
 
-const reset = async (req, res) => {
-    console.log('Resetting conversation');
-    conversation.splice(0, conversation.length);
-    res.status(200).json({ message: 'Conversation reset' });
-};
-
-const load = async (req, res) => {
-    conversation.push(req.body);
-};
-
-export { sendQuestion, reset, load };
+export { sendQuestion };

@@ -33,6 +33,7 @@ const DisplayChat = ({ item }) => {
                             },
                         }}
                     />
+                    <p className='auto-right'>Tokens: {item.usage}</p>
                 </div>
             </div>
         </div>

@@ -200,6 +200,7 @@ li {
     cursor: pointer;
 }
 
+/* Alignment */
 .mg-left-20 {
     margin-left: 20px;
 }
@@ -207,6 +208,13 @@ li {
 .width-40 {
     width: 20px;
     margin-left: 10px;
+}
+
+.auto-right {
+    margin-left: 700px;
+    font-size: 0.8em;
+    font-style: italic;
+    color: #9ea0a7;
 }
 
 @keyframes pulse {
