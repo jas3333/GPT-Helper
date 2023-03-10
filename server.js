@@ -2,7 +2,13 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
+import connectDB from './utils/connectDB.js';
+
+import { getEmbeddings, callGPT } from './utils/tools.js';
+
 dotenv.config();
+
+connectDB();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

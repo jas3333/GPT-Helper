@@ -1,49 +1,56 @@
-import axios from 'axios';
+import Messages from './../models/messages.js';
 import personas from './../data/personas.js';
+import { getEmbeddings, callGPT } from './../utils/tools.js';
+import { queryIndex, upsert } from './../utils/pinecone.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const sendQuestion = async (req, res) => {
-    const options = {
-        headers: { Authorization: `Bearer ${process.env.OPEN_AI_KEY}`, 'Content-Type': 'application/json' },
+    let vector = await getEmbeddings(req.body.promptQuestion);
+    let uniqueID = uuidv4();
+
+    let metaData = {
+        _id: uniqueID,
+        speaker: 'USER',
+        message: req.body.promptQuestion,
     };
 
-    console.log(req.body.conversation);
+    let createMessage = await Messages.create(metaData);
 
-    const conversation = req.body.conversation.map((item) => {
-        return `${item.promptQuestion} ${item.botResponse}`;
-    });
+    const payload = [{ uniqueID, vector }];
 
-    console.log(conversation);
+    const pineconeResults = await queryIndex(vector);
 
-    const promptData = {
-        model: 'gpt-3.5-turbo',
-        messages: [
-            { role: 'system', content: personas[req.body.persona].prompt },
-            { role: 'user', content: `${conversation}\nUser: ${req.body.promptQuestion}\n` },
-        ],
-        n: 1,
-        top_p: 1,
-        temperature: Number(req.body.temperature),
-        max_tokens: Number(req.body.tokens),
-        presence_penalty: Number(req.body.presencePenalty),
-        frequency_penalty: Number(req.body.frequencyPenalty),
+    const ids = pineconeResults.matches.map((match) => match.id);
+    const mongoQuery = await Messages.find({ _id: { $in: ids } });
+
+    console.log(mongoQuery);
+
+    const prompt = `${mongoQuery}\nUser:${req.body.promptQuestion}`;
+
+    const output = await callGPT(
+        prompt,
+        Number(req.body.temperature),
+        Number(req.body.top_p),
+        Number(req.body.tokens),
+        Number(req.body.presencePenalty),
+        Number(req.body.frequencyPenalty),
+        personas[req.body.persona].prompt
+    );
+
+    vector = await getEmbeddings(output);
+    uniqueID = uuidv4();
+    metaData = {
+        _id: uniqueID,
+        speaker: personas[req.body.persona].name,
+        message: output,
     };
+    createMessage = await Messages.create(metaData);
 
-    try {
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', promptData, options);
-        console.log(response.data);
-        console.log(`Usage: ${response.data.usage.total_tokens}`);
+    payload.push({ uniqueID, vector });
 
-        res.status(200).json({
-            message: response.data.choices[0].message.content,
-            profilePic: personas[req.body.persona].profilePic,
-            usage: response.data.usage.total_tokens,
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(400).json({
-            message: error.data,
-        });
-    }
+    const uploadVector = await upsert(payload);
+
+    res.status(200).json({ message: output, profilePic: personas[req.body.persona].profilePic });
 };
 
 export { sendQuestion };
