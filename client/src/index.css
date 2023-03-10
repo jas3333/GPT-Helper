@@ -201,7 +201,7 @@ li {
 }
 
 /* Alignment */
-.mg-left-20 {
+.value-label {
     margin-left: 20px;
 }
 
@@ -210,7 +210,7 @@ li {
     margin-left: 10px;
 }
 
-.auto-right {
+.tokens {
     margin-left: 700px;
     font-size: 0.8em;
     font-style: italic;
@@ -268,4 +268,88 @@ input[type='range']::-moz-range-track {
     height: 5px;
     background-color: #ddd;
     border-radius: 5px;
+}
+
+@media only screen and (max-width: 800px) {
+    .chatbox {
+        width: 100%;
+        height: 80%;
+    }
+    .chat-bubble {
+        width: 100%;
+        margin: 0;
+    }
+    .user-chat {
+        width: 60%;
+    }
+    .tokens {
+        margin-left: 250px;
+    }
+    .profile-pic {
+        width: 50px;
+        height: 50px;
+    }
+    .settings-modal {
+        width: 90%;
+        font-size: 1.5em;
+        height: 800px;
+        top: 30%;
+        transform: translateX(-50%);
+    }
+    .btn {
+        transform: scale(1.5);
+        margin-top: 20px;
+    }
+    .settings {
+        display: flex;
+        flex-direction: column;
+    }
+    .value-label {
+        margin-top: 20px;
+    }
+    .slider {
+        margin: 10px 0;
+    }
+    select {
+        margin-top: 10px;
+        font-size: 0.75em;
+        padding: 7px;
+    }
+    input[type='range'] {
+        -webkit-appearance: none;
+        width: 230px;
+        height: 5px;
+        background-color: #ddd;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 10px;
+        height: 10px;
+        background-color: #333;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    input[type='range']::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background-color: #333;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    input[type='range']::-webkit-slider-runnable-track {
+        height: 5px;
+        background-color: #ddd;
+        border-radius: 5px;
+    }
+
+    input[type='range']::-moz-range-track {
+        height: 5px;
+        background-color: #ddd;
+        border-radius: 5px;
+    }
 }

@@ -16,10 +16,9 @@ const Settings = memo(({ botSettings, settingsChange, reset }) => {
                         <option value='6'>Fiona - Novelist</option>
                         <option value='7'>Jack - Comedian</option>
                     </select>
-                    <label className='mg-left-20' htmlFor='tokens'>
-                        Tokens:
+                    <label className='value-label' htmlFor='tokens'>
+                        Tokens: {botSettings.tokens}
                     </label>
-                    <p className='width-40'>{botSettings.tokens}</p>
 
                     <input
                         className='slider'
@@ -32,10 +31,9 @@ const Settings = memo(({ botSettings, settingsChange, reset }) => {
                         value={botSettings.tokens}
                         onChange={settingsChange}
                     />
-                    <label className='mg-left-20' htmlFor='tokens'>
-                        Temperature:
+                    <label className='value-label' htmlFor='tokens'>
+                        Temperature: {botSettings.temperature}
                     </label>
-                    <p className='width-40'>{botSettings.temperature}</p>
 
                     <input
                         className='slider'
@@ -48,11 +46,9 @@ const Settings = memo(({ botSettings, settingsChange, reset }) => {
                         value={botSettings.temperature}
                         onChange={settingsChange}
                     />
-                    <label className='mg-left-20' htmlFor='tokens'>
-                        Top_P:
+                    <label className='value-label' htmlFor='tokens'>
+                        Top_P: {botSettings.top_p}
                     </label>
-                    <p className='width-40'>{botSettings.top_p}</p>
-
                     <input
                         className='slider'
                         id='tokens'
@@ -66,10 +62,9 @@ const Settings = memo(({ botSettings, settingsChange, reset }) => {
                     />
                 </div>
                 <div className='settings'>
-                    <label className='mg-left-20' htmlFor='tokens'>
-                        Presence Penalty:
+                    <label className='value-label' htmlFor='tokens'>
+                        Presence Penalty: {botSettings.presencePenalty}
                     </label>
-                    <p className='width-40'>{botSettings.presencePenalty}</p>
 
                     <input
                         className='slider'
@@ -82,10 +77,9 @@ const Settings = memo(({ botSettings, settingsChange, reset }) => {
                         value={botSettings.presencePenalty}
                         onChange={settingsChange}
                     />
-                    <label className='mg-left-20' htmlFor='tokens'>
-                        Frequency Penalty:
+                    <label className='value-label' htmlFor='tokens'>
+                        Frequency Penalty: {botSettings.frequencyPenalty}
                     </label>
-                    <p className='width-40'>{botSettings.frequencyPenalty}</p>
 
                     <input
                         className='slider'

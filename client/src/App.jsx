@@ -32,7 +32,7 @@ function App() {
 
         try {
             setIsLoading(true);
-            const response = await axios.post('http://localhost:4015/api/v1/gpt', {
+            const response = await axios.post('/api/v1/gpt', {
                 promptQuestion,
                 ...botSettings,
                 conversation: [...conversation],

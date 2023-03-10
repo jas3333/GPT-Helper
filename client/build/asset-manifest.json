@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.d81353b5.css",
-    "main.js": "/static/js/main.df874bf5.js",
+    "main.css": "/static/css/main.db719859.css",
+    "main.js": "/static/js/main.7df743ec.js",
     "static/media/cyberpunk.png": "/static/media/cyberpunk.9bb9388d57611277ee50.png",
     "static/media/cyberpunk5.png": "/static/media/cyberpunk5.700e82ecdd562e53b584.png",
     "static/media/cyberpunk4.png": "/static/media/cyberpunk4.51bdb8f0067cc3e2429e.png",
@@ -14,11 +14,11 @@
     "static/media/jack.png": "/static/media/jack.ef1af5c50c4ac2f1c598.png",
     "static/media/cyberpunk.jpg": "/static/media/cyberpunk.1ccc75de0436b9497721.jpg",
     "index.html": "/index.html",
-    "main.d81353b5.css.map": "/static/css/main.d81353b5.css.map",
-    "main.df874bf5.js.map": "/static/js/main.df874bf5.js.map"
+    "main.db719859.css.map": "/static/css/main.db719859.css.map",
+    "main.7df743ec.js.map": "/static/js/main.7df743ec.js.map"
   },
   "entrypoints": [
-    "static/css/main.d81353b5.css",
-    "static/js/main.df874bf5.js"
+    "static/css/main.db719859.css",
+    "static/js/main.7df743ec.js"
   ]
 }

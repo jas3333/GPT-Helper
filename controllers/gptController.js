@@ -5,7 +5,16 @@ import { queryIndex, upsert } from './../utils/pinecone.js';
 import { v4 as uuidv4 } from 'uuid';
 
 const sendQuestion = async (req, res) => {
+    let previousQuestion = '';
+    let previousResponse = '';
+    if (req.body.conversation.length > 1) {
+        previousQuestion = req.body.conversation[req.body.conversation.length - 1].promptQuestion;
+        previousResponse = req.body.conversation[req.body.conversation.length - 1].botResponse;
+    }
+
+    console.log(`User: ${previousQuestion} ${personas[req.body.persona].name}: ${previousResponse}`);
     let vector = await getEmbeddings(req.body.promptQuestion);
+
     let uniqueID = uuidv4();
 
     let metaData = {
@@ -15,6 +24,7 @@ const sendQuestion = async (req, res) => {
     };
 
     let createMessage = await Messages.create(metaData);
+    console.log(createMessage);
 
     const payload = [{ uniqueID, vector }];
 
@@ -23,9 +33,11 @@ const sendQuestion = async (req, res) => {
     const ids = pineconeResults.matches.map((match) => match.id);
     const mongoQuery = await Messages.find({ _id: { $in: ids } });
 
-    console.log(mongoQuery);
+    console.log(`Querying MongoDB for matching IDs: ${mongoQuery}`);
 
-    const prompt = `${mongoQuery}\nUser:${req.body.promptQuestion}`;
+    const prompt = `Previous conversation: ${mongoQuery}\nPrevious question from User: ${previousQuestion}\nPrevious response from ${
+        personas[req.body.persona].name
+    }: ${previousResponse}User:${req.body.promptQuestion}`;
 
     const { data, usage } = await callGPT(
         prompt,
