@@ -4,6 +4,10 @@ I rebuilt this whole app from scratch to have a better UI. I also needed to move
 that I could create a proper Docker image file, which I will be working on while still improving this app.
 I still haven't added in all of the previous personas yet.
 
+### Docker:
+
+Instructions how to setup here: [Dockerhub Link](https://hub.docker.com/repository/docker/jas313/gpt-chatbot/general)
+
 ### To install:
 
 git clone the repo:
