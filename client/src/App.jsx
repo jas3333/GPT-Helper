@@ -43,11 +43,10 @@ function App() {
                 profilePic: response.data.profilePic,
                 usage: response.data.usage,
             };
-            if (conversation.length > 30) {
+            if (conversation.length > 100) {
                 setConversation(conversation.shift());
             }
             setConversation([...conversation, newChat]);
-            console.log(conversation);
             localStorage.setItem('conversation', JSON.stringify([...conversation, newChat]));
         } catch (error) {
             console.log(error);

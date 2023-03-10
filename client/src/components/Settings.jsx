@@ -9,10 +9,12 @@ const Settings = memo(({ botSettings, settingsChange, reset }) => {
                     <select id='options' onChange={settingsChange} name='persona' value={botSettings.persona}>
                         <option value='0'>Rhey - Programming/Network Expert</option>
                         <option value='1'>Rick - Rick and Morty</option>
-                        <option value='2'>Eva - World Reknown Journalist</option>
+                        <option value='2'>Eva - World Renown Journalist</option>
                         <option value='3'>Reef - World Class Surfer</option>
                         <option value='4'>Ugg - The Caveman</option>
                         <option value='5'>AI Assistant - Default ChatGPT</option>
+                        <option value='6'>Fiona - Novelist</option>
+                        <option value='7'>Jack - Comedian</option>
                     </select>
                     <label className='mg-left-20' htmlFor='tokens'>
                         Tokens:
