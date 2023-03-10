@@ -27,7 +27,7 @@ const sendQuestion = async (req, res) => {
 
     const prompt = `${mongoQuery}\nUser:${req.body.promptQuestion}`;
 
-    const output = await callGPT(
+    const { data, usage } = await callGPT(
         prompt,
         Number(req.body.temperature),
         Number(req.body.top_p),
@@ -37,12 +37,12 @@ const sendQuestion = async (req, res) => {
         personas[req.body.persona].prompt
     );
 
-    vector = await getEmbeddings(output);
+    vector = await getEmbeddings(data);
     uniqueID = uuidv4();
     metaData = {
         _id: uniqueID,
         speaker: personas[req.body.persona].name,
-        message: output,
+        message: data,
     };
     createMessage = await Messages.create(metaData);
 
@@ -50,7 +50,7 @@ const sendQuestion = async (req, res) => {
 
     const uploadVector = await upsert(payload);
 
-    res.status(200).json({ message: output, profilePic: personas[req.body.persona].profilePic });
+    res.status(200).json({ message: data, profilePic: personas[req.body.persona].profilePic, usage: usage });
 };
 
 export { sendQuestion };

@@ -3,14 +3,14 @@ import axios from 'axios';
 const queryIndex = async (vectors) => {
     const options = {
         method: 'POST',
-        url: 'https://memories-832339a.svc.us-west1-gcp.pinecone.io/query',
+        url: process.env.QUERY_URL,
         headers: {
             accept: 'application/json',
             'content-type': 'application/json',
             'Api-Key': process.env.PINECONE_API,
         },
         data: {
-            topK: 5,
+            topK: 3,
             vector: vectors,
             includeValues: 'false',
             includeMetadata: 'false',
@@ -30,7 +30,7 @@ const upsert = async (payload) => {
     console.log('Upserting vectors...');
     const options = {
         method: 'POST',
-        url: 'https://memories-832339a.svc.us-west1-gcp.pinecone.io/vectors/upsert',
+        url: process.env.UPSERT_URL,
         headers: {
             accept: 'application/json',
             'content-type': 'application/json',
