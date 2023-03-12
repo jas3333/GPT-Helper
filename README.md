@@ -11,6 +11,8 @@ Instructions how to setup here: [Dockerhub Link](https://hub.docker.com/reposito
 The Docker version uses Pinecone and Mongodb to give the bots an insane amount of memories. Instead of the usual 10
 it can go to a million and keep tokens at a managable level.
 
+[Git repo for this version](https://github.com/jas3333/gptchat_pinecone)
+
 ### To install:
 
 git clone the repo:
