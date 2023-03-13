@@ -6,7 +6,7 @@ I still haven't added in all of the previous personas yet.
 
 ### Docker:
 
-Instructions how to setup here: [Dockerhub Link](https://hub.docker.com/repository/docker/jas313/gpt-chatbot/general)
+Instructions how to setup here: [Dockerhub Link](https://hub.docker.com/r/jas313/gpt-chatbot)
 
 The Docker version uses Pinecone and Mongodb to give the bots an insane amount of memories. Instead of the usual 10
 it can go to a million and keep tokens at a managable level.
