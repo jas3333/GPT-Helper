@@ -1,3 +1,4 @@
+import open from 'open';
 import express from 'express';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
@@ -17,4 +18,5 @@ app.use('/api/v1/gpt', gptRouter);
 
 app.listen(PORT, () => {
     console.log(`Server listening on port: ${PORT}`);
+    open(`http://localhost:${PORT}`);
 });
