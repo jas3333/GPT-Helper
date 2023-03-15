@@ -262,8 +262,20 @@ input[type='range']::-moz-range-track {
     border-radius: 5px;
 }
 
-@media (max-height: 1186px) {
+@media (max-height: 1190px) {
     .chatbox {
-        height: 980px;
+        height: 950px;
+    }
+    .settings-modal {
+        top: 75%;
+    }
+}
+
+@media (max-height: 950px) {
+    .chatbox {
+        height: 800px;
+    }
+    .settings-modal {
+        top: 72%;
     }
 }
