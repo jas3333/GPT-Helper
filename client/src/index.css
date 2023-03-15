@@ -271,9 +271,9 @@ input[type='range']::-moz-range-track {
     }
 }
 
-@media (max-height: 950px) {
+@media (max-height: 1000px) {
     .chatbox {
-        height: 800px;
+        height: 780px;
     }
     .settings-modal {
         top: 72%;
