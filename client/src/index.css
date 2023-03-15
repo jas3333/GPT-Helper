@@ -261,3 +261,9 @@ input[type='range']::-moz-range-track {
     background-color: #ddd;
     border-radius: 5px;
 }
+
+@media (max-height: 1186px) {
+    .chatbox {
+        height: 980px;
+    }
+}
