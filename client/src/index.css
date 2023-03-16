@@ -273,9 +273,36 @@ input[type='range']::-moz-range-track {
 
 @media (max-height: 1000px) {
     .chatbox {
-        height: 780px;
+        height: 900px;
     }
     .settings-modal {
         top: 72%;
+    }
+}
+
+@media (max-height: 900px) {
+    .chatbox {
+        height: 850px;
+    }
+    .settings-modal {
+        top: 62%;
+    }
+}
+
+@media (max-height: 800px) {
+    .chatbox {
+        height: 700px;
+    }
+    .settings-modal {
+        top: 62%;
+    }
+}
+
+@media (max-height: 750px) {
+    .chatbox {
+        height: 670px;
+    }
+    .settings-modal {
+        top: 62%;
     }
 }
